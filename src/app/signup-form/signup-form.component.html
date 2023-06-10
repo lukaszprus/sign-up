@@ -1,0 +1,103 @@
+<form [formGroup]="signupForm" (ngSubmit)="signupForm.valid ? onSubmit() : signupForm.markAllAsTouched()">
+  <legend class="text-center">Sign up</legend>
+
+  <div class="row mb-3">
+    <label for="firstName" class="col-sm-4 col-form-label">First name</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="firstName" formControlName="firstName"
+        [class.is-valid]="firstName.valid && firstName.touched"
+        [class.is-invalid]="firstName.invalid && firstName.touched">
+
+      <ng-container *ngIf="firstName.invalid && firstName.touched && firstName.errors as errors">
+        <div *ngIf="errors['required']" class="invalid-feedback">
+          Required
+        </div>
+
+        <div *ngIf="errors['minlength']" class="invalid-feedback">
+          Minimum 2 characters required
+        </div>
+
+        <div *ngIf="errors['maxlength']" class="invalid-feedback">
+          Maximum 30 characters allowed
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="lastName" class="col-sm-4 col-form-label">Last name</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="lastName" formControlName="lastName"
+        [class.is-valid]="lastName.valid && lastName.touched"
+        [class.is-invalid]="lastName.invalid && lastName.touched">
+
+      <ng-container *ngIf="lastName.invalid && lastName.touched && lastName.errors as errors">
+        <div *ngIf="errors['required']" class="invalid-feedback">
+          Required
+        </div>
+
+        <div *ngIf="errors['minlength']" class="invalid-feedback">
+          Minimum 2 characters required
+        </div>
+
+        <div *ngIf="errors['maxlength']" class="invalid-feedback">
+          Maximum 30 characters allowed
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="email" class="col-sm-4 col-form-label">Email</label>
+    <div class="col-sm-8">
+      <input type="email" class="form-control" id="email" formControlName="email"
+        [class.is-valid]="email.valid && email.touched"
+        [class.is-invalid]="email.invalid && email.touched">
+
+      <ng-container *ngIf="email.invalid && email.touched && email.errors as errors">
+        <div *ngIf="errors['required']" class="invalid-feedback">
+          Required
+        </div>
+
+        <div *ngIf="errors['email']" class="invalid-feedback">
+          Invalid email
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="password" class="col-sm-4 col-form-label">Password</label>
+    <div class="col-sm-8">
+      <input type="password" class="form-control" id="password" formControlName="password"
+        [class.is-valid]="password.valid && password.touched"
+        [class.is-invalid]="password.invalid && password.touched">
+
+      <ng-container *ngIf="password.invalid && password.touched && password.errors as errors">
+        <div *ngIf="errors['required']" class="invalid-feedback">
+          Required
+        </div>
+
+        <div *ngIf="errors['minlength']" class="invalid-feedback">
+          Minimum 8 characters required
+        </div>
+
+        <div *ngIf="errors['pattern']" class="invalid-feedback">
+          Uppercase and lowercase letter required
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="row mb-3" *ngIf="signupForm.invalid && signupForm.touched && signupForm.errors && signupForm.errors['contains']">
+    <div class="alert alert-danger" role="alert">
+      Password cannot contain first name or last name
+    </div>
+  </div>
+
+  <div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="disabled">
+      Submit
+    </button>
+  </div>
+</form>
