@@ -24,10 +24,26 @@ export class SignupFormComponent {
   @Input() disabled?: boolean | undefined;
   @Output() valueChange = new EventEmitter<User>();
 
-  firstName = new FormControl<string>('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]);
-  lastName = new FormControl<string>('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]);
-  email = new FormControl<string>('', [Validators.required, Validators.email]);
-  password = new FormControl<string>('', [Validators.required, Validators.minLength(8), Validators.pattern(/[a-z]/), Validators.pattern(/[A-Z]/)]);
+  firstName = new FormControl<string>('', [
+    Validators.required,
+    Validators.minLength(2),
+    Validators.maxLength(30)
+  ]);
+  lastName = new FormControl<string>('', [
+    Validators.required,
+    Validators.minLength(2),
+    Validators.maxLength(30)
+  ]);
+  email = new FormControl<string>('', [
+    Validators.required,
+    Validators.email
+  ]);
+  password = new FormControl<string>('', [
+    Validators.required,
+    Validators.minLength(8),
+    Validators.pattern(/[a-z]/),
+    Validators.pattern(/[A-Z]/)
+  ]);
 
   signupForm = new FormGroup({
     firstName: this.firstName,

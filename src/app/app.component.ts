@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ export class AppComponent {
   saveInProgress = false;
   notification: { type: 'danger' | 'success'; message: string; } | undefined;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private userService: UserService) {}
 
   onValueChange(value: unknown) {
     if (this.saveInProgress) {
@@ -19,7 +20,7 @@ export class AppComponent {
     this.saveInProgress = true;
     this.notification = undefined;
 
-    this.httpClient.post('https://demo-api.now.sh/users', value)
+    this.userService.add(value)
       .subscribe({
         error: err => {
           this.saveInProgress = false;

@@ -1,7 +1,7 @@
 <form [formGroup]="signupForm" (ngSubmit)="signupForm.valid ? onSubmit() : signupForm.markAllAsTouched()">
   <legend class="text-center">Sign up</legend>
 
-  <div class="row mb-3">
+  <div class="row mb-3" data-test-firstName>
     <label for="firstName" class="col-sm-4 col-form-label">First name</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" id="firstName" formControlName="firstName"
@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <div class="row mb-3">
+  <div class="row mb-3" data-test-lastName>
     <label for="lastName" class="col-sm-4 col-form-label">Last name</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" id="lastName" formControlName="lastName"
@@ -47,7 +47,7 @@
     </div>
   </div>
 
-  <div class="row mb-3">
+  <div class="row mb-3" data-test-email>
     <label for="email" class="col-sm-4 col-form-label">Email</label>
     <div class="col-sm-8">
       <input type="email" class="form-control" id="email" formControlName="email"
@@ -66,7 +66,7 @@
     </div>
   </div>
 
-  <div class="row mb-3">
+  <div class="row mb-3" data-test-password>
     <label for="password" class="col-sm-4 col-form-label">Password</label>
     <div class="col-sm-8">
       <input type="password" class="form-control" id="password" formControlName="password"
@@ -89,7 +89,7 @@
     </div>
   </div>
 
-  <div class="row mb-3" *ngIf="signupForm.invalid && signupForm.touched && signupForm.errors && signupForm.errors['contains']">
+  <div class="row mb-3" data-test-notification *ngIf="signupForm.invalid && signupForm.touched && signupForm.errors && signupForm.errors['contains']">
     <div class="alert alert-danger" role="alert">
       Password cannot contain first name or last name
     </div>
